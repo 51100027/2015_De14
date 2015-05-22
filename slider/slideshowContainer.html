@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chỉnh hiệu ứng</title>
+    <style>
+        .captionOrange,
+        .captionBlack {
+            color: #fff;
+            font-size: 20px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 4px;
+        }
+        
+        .captionOrange {
+            background: #EB5100;
+            background-color: rgba(235, 81, 0, 0.6);
+        }
+        
+        .captionBlack {
+            font-size: 16px;
+            background: #000;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        
+        a.captionOrange,
+        A.captionOrange:active,
+        A.captionOrange:visited {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        
+        a.captionOrange:hover {
+            color: #eb5100;
+            text-decoration: underline;
+            background-color: #eeeeee;
+            background-color: rgba(238, 238, 238, 0.7);
+        }
+        
+        .bricon {
+            background: url(../img/browser-icons.png);
+        }
+    </style>
+    <style>
+        /* jssor slider thumbnail navigator skin 01 css */
+        /*
+                    .jssort01 .p            (normal)
+                    .jssort01 .p:hover      (normal mouseover)
+                    .jssort01 .p.pav        (active)
+                    .jssort01 .p.pdn        (mousedown)
+                    */
+        
+        .jssort01 {
+            position: absolute;
+            /* size of thumbnail navigator container */
+            
+            width: 800px;
+            height: 100px;
+        }
+        
+        .jssort01 .p {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 72px;
+            height: 72px;
+        }
+        
+        .jssort01 .t {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .jssort01 .w {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .jssort01 .c {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 68px;
+            height: 68px;
+            border: #000 2px solid;
+            box-sizing: content-box;
+            background: url(../img/t01.png) -800px -800px no-repeat;
+            _background: none;
+        }
+        
+        .jssort01 .pav .c {
+            top: 2px;
+            _top: 0px;
+            left: 2px;
+            _left: 0px;
+            width: 68px;
+            height: 68px;
+            border: #000 0px solid;
+            _border: #fff 2px solid;
+            background-position: 50% 50%;
+        }
+        
+        .jssort01 .p:hover .c {
+            top: 0px;
+            left: 0px;
+            width: 70px;
+            height: 70px;
+            border: #fff 1px solid;
+            background-position: 50% 50%;
+        }
+        
+        .jssort01 .p.pdn .c {
+            background-position: 50% 50%;
+            width: 68px;
+            height: 68px;
+            border: #000 2px solid;
+        }
+        
+        * html .jssort01 .c,
+        * html .jssort01 .pdn .c,
+        * html .jssort01 .pav .c {
+            /* ie quirks mode adjust */
+            
+            width
+            /**/
+            
+            : 72px;
+            height
+            /**/
+            
+            : 72px;
+        }
+    </style>
+</head>
+
+<body style="padding: 0; margin: 20px; font-family:Arial, Verdana;background-color:#fff;">
+    <!-- use jssor.slider.min.js instead for release -->
+    <!-- jssor.slider.min.js = (jssor.js + jssor.slider.js) -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="css/progress_step.css">
+
+    <script type="text/javascript" src="js/slider/jssor.js"></script>
+    <script type="text/javascript" src="js/slider/jssor.slider.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/slider/my.jssor.js"></script>
+
+    <div class="row bs-wizard" style="border-bottom:0;">
+                
+        <div class="col-xs-3 bs-wizard-step complete">
+          <div class="text-center bs-wizard-stepnum">Nhập ảnh</div>
+          <div class="progress"><div class="progress-bar"></div></div>
+          <a href="#" class="bs-wizard-dot"></a>
+        </div>
+        
+        <div class="col-xs-3 bs-wizard-step active"><!-- complete -->
+          <div class="text-center bs-wizard-stepnum">Tạo hiệu ứng</div>
+          <div class="progress"><div class="progress-bar"></div></div>
+          <a href="#" class="bs-wizard-dot" ></a>
+          
+        </div>
+        
+        <div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
+          <div class="text-center bs-wizard-stepnum">Thêm nhạc</div>
+          <div class="progress"><div class="progress-bar"></div></div>
+          <a href="#" class="bs-wizard-dot" onclick="nextStep()"></a>
+        </div>
+        
+        <div class="col-xs-3 bs-wizard-step disabled"><!-- active -->
+          <div class="text-center bs-wizard-stepnum">Hoàn thành</div>
+          <div class="progress"><div class="progress-bar"></div></div>
+          <a href="#" class="bs-wizard-dot"></a>
+        </div>
+     </div>
+
+     <br><br>
+
+    <div class="container-fluid" id="container">
+        <div class="col-sm-10 col-md-10 col-centered" style="margin: 0 auto;" id="slideshow_container">
+        </div>
+        <div id="control_container" class="col-md-2 col-sm-2">
+        </div>
+
+      
+        <script>
+        $( document ).ready(function() {
+            allImageJson = selected_photos.photo;
+                console.log("image: ");
+                console.log(allImageJson);
+            });
+            var jssor_slider1;
+            jssor_slider1 = init_jssor_slider1(0);
+
+            /*function changeTransition() {
+                $("#btnChangeTransition").attr('disabled', 'disabled');
+                PlayPause();
+                var index = jssor_slider1.$CurrentIndex();
+                jssor_slider2 = createChangeTransitionSlideShow(index);
+
+                $('select').on('change', function(e) {
+                    var optionSelected = $("option:selected", this);
+                    var valueSelected = this.value;
+                    //console.log(valueSelected);
+                    setTransition(valueSelected);
+                });
+
+                $('#btnSave').click(function() {
+                    //var optionSelected = $("option:selected", $('select'));
+                    var valueSelected = $('#ssTransition').val();
+                    console.log(valueSelected);
+                    saveTransition(valueSelected);
+                    $("#btnSave").attr('disabled', 'disabled');
+                     $("#btnChangeTransition").removeAttr('disabled');
+                    $("#slider1_container").remove();
+                    jssor_slider1 = init_jssor_slider1("slider1_container");
+                });
+            }*/
+
+
+
+            /*function PlayPause() {
+                if (jssor_slider1.$IsAutoPlaying()) {
+                    jssor_slider1.$Pause();
+                    //Change Pictuce
+                } else {
+                    jssor_slider1.$Play();
+                }
+            }
+
+            function Pause() {
+                jssor_slider1.$Pause();
+
+            }
+
+            function PlayTo() {
+                jssor_slider1.$PlayTo(jssor_slider1.$CurrentIndex() + 1);
+            }
+
+            function GoTo() {
+                jssor_slider1.$GoTo(jssor_slider1.$CurrentIndex() + 1);
+            }
+
+            function Next() {
+                console.log(test());
+            }
+
+            function Prev() {
+                jssor_slider1.$Prev();
+            }
+            var playButton = $Jssor$.$GetElement("playButton");
+            var pauseButton = $Jssor$.$GetElement("pauseButton");
+            var playToButton = $Jssor$.$GetElement("playToButton");
+            var gotoButton = $Jssor$.$GetElement("gotoButton");
+            var nextButton = $Jssor$.$GetElement("nextButton");
+            var prevButton = $Jssor$.$GetElement("prevButton");
+
+
+            $Jssor$.$AddEvent(playButton, "click", PlayPause);
+            $Jssor$.$AddEvent(pauseButton, "click", Pause);
+            $Jssor$.$AddEvent(playToButton, "click", PlayTo);
+            $Jssor$.$AddEvent(gotoButton, "click", GoTo);
+            $Jssor$.$AddEvent(nextButton, "click", Next);
+            $Jssor$.$AddEvent(prevButton, "click", Prev);
+*/
+            //API $Play, $Pause, $PlayTo, $GoTo, $Next, $Prev fun*/
+            function nextStep(){
+                allImageJson = selected_photos.photo;
+                console.log("image: ");
+                console.log(allImageJson);
+                $("#main_content").load("layout_succeed.html");
+            }
+        </script>
+        <!--#endregion Jssor Slider End -->
+
+        <div class="container">
+        <button type="button" class="btn btn-primary" style="float: right;" onclick="nextStep()">Hoàn thành</button>
+    </div>
+</body>
+
+</html>

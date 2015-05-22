@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+  <head>
+		<meta charset="utf-8">
+		<title>Nhập ảnh</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	  	<link rel="stylesheet" href="css/bootstrap.min.css">
+	  	<link rel="stylesheet" type="text/css" href="css/style.css">
+	  	<script src="js/jquery.min.js"></script>
+	  	<script src="js/bootstrap.min.js"></script>
+
+
+
+	  	<script src="js/jssor.js"></script>
+	  	<script src="js/jssor.slider.js"></script>
+	  	<script src="js/my.jssor.js"></script>
+
+
+	  	<link rel="stylesheet" type="text/css" href="css/progress_step.css">
+
+	  	<style type="text/css">
+			.scroll-area {
+				height: 350px;
+				width: 100%;
+				position: relative;
+				overflow: auto;
+			}
+			.selected_1{
+				opacity: 0.4;
+    			filter: alpha(opacity=40); /* For IE8 and earlier */
+			}
+			.selected_2{
+				opacity: 0.4;
+    			filter: alpha(opacity=40); /* For IE8 and earlier */
+			}
+		</style>
+
+	  	<!-- <link rel="stylesheet" type="text/css" href="css/image_gallery.css"> -->
+
+	  	<script type="text/javascript">
+
+	  		console.log("Enter facebook command...");
+
+	  		FB.init({
+			       	appId      : '388013708073548',
+			       	status     : true, // check login status
+			       	cookie     : true, // enable cookies to allow the server to access the session
+			       	xfbml      : true  // parse XFBML
+		     });
+		    		      
+
+			var selected_photos = {
+			    photo: []
+			};
+			var albumPhotos = {
+				photo: []
+			}
+			var fbResponse;
+			console.log("Fetching user's album ...");
+			FB.getLoginStatus(function(response) {
+		      	//console.log(response);
+		      	if(response.status== 'connected'){
+				    FB.api('/me/albums', function(response) {
+				    	console.log(response);
+				    	fbResponse = response;
+			    	
+					    for(var i = 0;i<response.data.length;i++){
+				  			var newOption = document.createElement("option");
+				  			newOption.value = response.data[i].id;
+				  			var newAlbumName = document.createTextNode(response.data[i].name);
+				  			newOption.appendChild(newAlbumName);
+				  			document.getElementById("albumSelector").appendChild(newOption);			  			
+				  		}
+
+
+		            });
+				}
+			});
+
+			function fetchAlbumPhotos(){
+				document.getElementById("photo_picker_container").innerHTML = "";
+				var e = document.getElementById("albumSelector");
+    			var albumId = e.options[e.selectedIndex].value;
+    			var query = albumId+"/photos";
+    			//alert(query);
+    			FB.api(query,function(response){
+    				console.log(response);
+
+    				for(var i = 0;i<response.data.length;i++){
+		  				addNewImage(response.data[i].picture, response.data[i].id, response.data[i].source);
+	  				}
+	  				//numberImage();	
+    			});
+			}
+
+			function random(max){
+				return Math.floor((Math.random() * max) + 1);
+			}
+
+			function addNewImage(cover_link, image_id, image_link){
+				
+				var imageContainer = document.createElement("div");
+				//imageContainer.id = image_id;
+				imageContainer.className = "col-xs-6 col-md-3";
+
+				var a = document.createElement("a");
+				a.href = "#";
+				a.className = "thumbnail";
+
+				var image = document.createElement("img");
+				image.src = cover_link;
+				image.alt = image_link;
+				image.id = image_id+"_1";
+				image.onclick = function() {toggleSelectImage(image_id, 1)};
+
+				a.appendChild(image);
+
+				imageContainer.appendChild(a);
+				document.getElementById("photo_picker_container").appendChild(imageContainer);
+			}			
+			function toggleSelectImage(image_id, mode){
+				if(mode == 1){
+					if(document.getElementById(image_id+"_1").className == "")
+						document.getElementById(image_id+"_1").className = "selected_1";
+					else
+						document.getElementById(image_id+"_1").className = "";
+				}
+				if(mode == 2){
+					//console.log("id :" + image_id+"_2");
+					if(document.getElementById(image_id+"_2").className == "")
+						document.getElementById(image_id+"_2").className = "selected_2";
+					else
+						document.getElementById(image_id+"_2").className = "";
+				}
+				//alert(image_id);
+				/*var isSelected = false;
+				var index = 0;
+				for(index = 0;index<selected_photos.photo.length;index++){
+					if(selected_photos.photo[index].id == image_id){
+						isSelected = true;
+						break;
+					}
+				}
+				if(!isSelected){
+						console.log("adding photo");
+	  					var randomIndex = random(360);
+	  					while(SlideShowTransition[randomIndex] == null){
+	  						console.log(randomIndex + "gia tri:" + SlideShowTransition[randomIndex] );
+	  						randomIndex = random(360);
+	  					}
+			  			selected_photos.photo.push({ 
+						        "photoId" 		: image_id,
+						        "thumbLink"  	: cover_link,
+						        "photoLink"		: image_link,
+						        "SlideShowTransition": SlideShowTransition[randomIndex]
+						});
+
+						addToSelected(image_id, cover_link);
+				}
+				else{
+					document.getElementById(image_id).className = "img";
+					document.getElementById("number_"+selected_photos.photo[index].id).innerHTML = "chưa chọn";
+					//alert(index);
+					selected_photos.photo.splice(index,1);
+					//selected_photos.photo.length--;
+				}
+			    console.log(selected_photos);*/
+			    //numberImage();
+			}
+
+			function updateSelectedArea(){
+				document.getElementById("photo_selected_container").innerHTML = "";
+				console.log(selected_photos);
+				for(var i=0; i<selected_photos.photo.length;i++){
+					addToSelected(selected_photos.photo[i].photoId, selected_photos.photo[i].thumbLink, 
+						selected_photos.photo[i].photoLink);
+				}
+			}
+
+			function addToSelected(image_id, cover_link, image_link){
+				var imageContainer = document.createElement("div");
+				//imageContainer.id = image_id;
+				imageContainer.className = "col-xs-6 col-md-3";
+
+				var a = document.createElement("a");
+				a.href = "#";
+				a.className = "thumbnail";
+
+				var image = document.createElement("img");
+				image.id = image_id + "_2";
+				image.src = cover_link;
+				image.alt = image_link;
+
+				//image.width = "98%";
+				//image.height = "98%";
+				image.onclick = function() {toggleSelectImage(image_id, 2)};
+
+				a.appendChild(image);
+
+				imageContainer.appendChild(a);
+				document.getElementById("photo_selected_container").appendChild(imageContainer);
+			}
+
+			function numberImage(){
+				for(var i=0;i<selected_photos.photo.length;i++){
+					if(document.getElementById("number_"+selected_photos.photo[i].id) != null){					
+						document.getElementById("number_"+selected_photos.photo[i].id).innerHTML = i+1;
+						document.getElementById(selected_photos.photo[i].id).className = "img_selected";
+					}
+				}
+			}
+
+			function isSelected(image_id){
+				var isSelected = false;
+				var index = 0;
+				for(index = 0;index<selected_photos.photo.length;index++){
+					if(selected_photos.photo[index].id == image_id){
+						isSelected = true;
+						break;
+					}
+				}
+				return isSelected;
+			}
+
+			function selectPhotos(){
+				var selected = document.getElementsByClassName("selected_1");
+				console.log(selected.length);
+				for(var i = 0; i<selected.length; i++){
+					console.log("adding photo");
+	  				var randomIndex = random(360);
+	  				while(SlideShowTransition[randomIndex] == null){
+	  					console.log(randomIndex + "gia tri:" + SlideShowTransition[randomIndex] );
+	  					randomIndex = random(360);
+	  				}
+			  		selected_photos.photo.push({ 
+						        "photoId" 		: selected[i].id.substring(0, selected[i].id.length - 2),
+						        "thumbLink"  	: selected[i].src,
+						        "photoLink"		: selected[i].alt,
+						        "SlideShowTransition": SlideShowTransition[randomIndex]
+					});
+			  		//console.log(selected[i]);
+			  		toggleSelectImage(selected[i].id.substring(0, selected[i].id.length - 2), 1);
+					//selected[i].parent().parent().remove();
+					
+
+					//addToSelected(selected[i].id, selected[i].src, selected[i].alt);
+				}
+				//console.log(selected_photos);
+				updateSelectedArea();
+			}
+
+			function unselectPhotos(){
+				var selected = document.getElementById("photo_selected_container").childNodes;
+				for(var i=0;i<selected.length;i++){
+					//console.log(selected[i].childNodes[0].childNodes[0]);
+
+					if(selected[i].childNodes[0].childNodes[0].className == "selected_2"){
+						//selected[i].parentNode.removeChild(selected[i]);
+						selected_photos.photo.splice(i,1);
+						//selected_photos.photo.length--;
+						//console.log(selected_photos);
+					}
+					updateSelectedArea();
+				}
+			}
+
+			function selectAllCurrentPhoto(){
+
+			}
+
+			function nextStep(){
+				allImageJson = selected_photos.photo;
+				console.log("image: ");
+				console.log(allImageJson);
+				$("#main_content").load("slideshowContainer.html");
+			}
+	  	</script>
+
+  </head>
+
+  <body style="padding: 0; margin: 0; font-family:Arial, Verdana;background-color:#fff;">
+  	<div class="row bs-wizard" style="border-bottom:0;">
+                
+        <div class="col-xs-3 bs-wizard-step active">
+          <div class="text-center bs-wizard-stepnum">Nhập ảnh</div>
+          <div class="progress"><div class="progress-bar"></div></div>
+          <a href="#" class="bs-wizard-dot"></a>
+        </div>
+        
+        <div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
+          <div class="text-center bs-wizard-stepnum">Tạo hiệu ứng</div>
+          <div class="progress"><div class="progress-bar"></div></div>
+          <a href="#" class="bs-wizard-dot" onclick="nextStep()"></a>
+          
+        </div>
+        
+        <div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
+          <div class="text-center bs-wizard-stepnum">Thêm nhạc</div>
+          <div class="progress"><div class="progress-bar"></div></div>
+          <a href="#" class="bs-wizard-dot"></a>
+        </div>
+        
+        <div class="col-xs-3 bs-wizard-step disabled"><!-- active -->
+          <div class="text-center bs-wizard-stepnum">Hoàn thành</div>
+          <div class="progress"><div class="progress-bar"></div></div>
+          <a href="#" class="bs-wizard-dot"></a>
+        </div>
+	 </div>
+
+	<div class="container">
+		<div class="col-sm-4">
+		 	<div id = "albumPicker">
+			 	<div class="form-group" style="margin-top: 35px">
+				  <select class="form-control" id="albumSelector" onchange="fetchAlbumPhotos()">
+				    <option>--Chọn album--</option>
+				  </select>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class = "container">
+		<div class="col-sm-5">
+			<div class="scroll-area" data-spy="scroll" data-offset="0">
+				<div class="row" id = "photo_picker_container">
+			  		<a href="">---------Chưa album nào được chọn----------</a>
+				</div>
+			</div>
+		</div>		
+	 	<div class = "col-sm-1">
+	 		<button type="button" class="btn btn-primary btn-sm" onclick="selectPhotos()">Chọn ảnh</button>
+			<button type="button" class="btn btn-warning btn-sm" onclick = "unselectPhotos()">Bỏ chọn</button>
+		</div>
+		<div class="col-sm-5">
+			<div class="scroll-area" data-spy="scroll" data-offset="0">
+				<div class="row" id = "photo_selected_container">
+			  		<a href="">-------------Chưa ảnh nào được chọn-----------</a>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- 
+	
+	 	<div class="col-sm-6" >
+	    	<div style="float: right;">
+			 	<button type="button" class="btn btn-success" onclick = "selectAllCurrentPhoto()">Chọn tất cả</button>
+			 	<button type="button" class="btn btn-danger" onclick = "unselectAllPhoto()">Bỏ tất cả các ảnh đã chọn</button>
+		 	</div>
+	 	</div>
+	</div>
+
+    <div class="container-fluid">
+    	<div class="col-sm-12">
+			<button type="button" class="btn btn-primary" style="float: right;">Tạo hiệu ứng</button>
+		</div>
+	</div> -->
+
+	<div class="container">
+		<button type="button" class="btn btn-primary" style="float: right;" onclick="nextStep()">Tạo hiệu ứng</button>
+	</div>
+</body>
+</html>
