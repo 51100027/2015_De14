@@ -14,7 +14,7 @@
                   echo "OK";
 
                   $query = "INSERT INTO albums (user_id, script_link, album_name, cover_link) VALUES 
-                  			('".$_GET["user_id"]."','".$_GET["script_link"]."','".$_GET["album_name"]."','".$_GET["cover_link"]."')";
+                  			('".$_POST["user_id"]."','".$_POST["script_link"]."','".$_POST["album_name"]."','".$_POST["cover_link"]."')";
 
                   if ($conn->query($query) === TRUE) {
                       header( 'Location: http://hoclaptrinhweb.esy.es/Lab_DHBK/Lab7/lab7.php');

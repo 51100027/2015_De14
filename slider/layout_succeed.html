@@ -5,9 +5,50 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/progress_step.css">
+	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+
 </head>
 <body>
+	<script type="text/javascript">
+		function saveToServer(){
+			var name = CryptoJS.MD5("Message");
+			$.ajax({
+                type: "POST",
+                url: 'save_json.php',
+                data: "json="+json+"&name="+name,
+                contentType: "charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    //$("#divResult").html(msg.d);
+                    alert("Lưu thành công!");
+                },
+                error: function (e) {
+                    //$("#divResult").html("WebSerivce unreachable");
+                    alert("Lỗi, không thể lưu");
+                }
+            });
+
+            var albumName = document.getElementById("album_name").value;
+
+            $.ajax({
+                type: "POST",
+                url: 'save_album.php',
+                data: "script_link="+name+"&user_id="+user_id+"&album_name="+albumName+"&cover_link="+"",
+                contentType: "charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    //$("#divResult").html(msg.d);
+                    alert("Lưu thành công!");
+                },
+                error: function (e) {
+                    //$("#divResult").html("WebSerivce unreachable");
+                    alert("Lỗi, không thể lưu");
+                }
+            });
+		}
+	</script>
 	<div class="row bs-wizard" style="border-bottom:0;">
                 
         <div class="col-xs-3 bs-wizard-step complete">
@@ -23,13 +64,13 @@
           
         </div>
         
-        <div class="col-xs-3 bs-wizard-step active"><!-- complete -->
+        <div class="col-xs-3 bs-wizard-step complete"><!-- complete -->
           <div class="text-center bs-wizard-stepnum">Thêm nhạc</div>
           <div class="progress"><div class="progress-bar"></div></div>
           <a href="#" class="bs-wizard-dot" onclick="nextStep()"></a>
         </div>
         
-        <div class="col-xs-3 bs-wizard-step disabled"><!-- active -->
+        <div class="col-xs-3 bs-wizard-step active"><!-- active -->
           <div class="text-center bs-wizard-stepnum">Hoàn thành</div>
           <div class="progress"><div class="progress-bar"></div></div>
           <a href="#" class="bs-wizard-dot"></a>
@@ -48,13 +89,13 @@
 			<ul class="list-group">
 			    <li class="list-group-item">Tên Album:</li>
 			    <li class="list-group-item">Thời gian tạo</li>
-			    <li class="list-group-item">Đưuòng dẫn</li>
+			    <li class="list-group-item">Đường dẫn</li>
   			</ul>
 		</div>
 
 		<div class="col-md-3" style="margin-left: -20px">
 			<ul class="list-group">
-			    <li id="nameAlbum" class="list-group-item">chị hàng xóm</li>
+			    <li id="nameAlbum" class="list-group-item"><input type="text" id="album_name"></li>
 			    <li id="dateCreate" class="list-group-item">22/05/2015</li>
 			    <li id="link" class="list-group-item">adshdjhsj</li>
   			</ul>
@@ -62,7 +103,7 @@
 	</div>
 	<div class="container">
 		<div class="col-md-6">
-			<button type="button" class="btn btn-default btn-lg" aria-label="Left Align" style="margin-left: 208px">
+			<button type="button" class="btn btn-default btn-lg" aria-label="Left Align" style="margin-left: 208px" onclick="saveToServer()">
   				<span class=" glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
 			</button>
 			<button type="button" class="btn btn-default btn-lg" aria-label="Left Align">
@@ -70,5 +111,24 @@
 			</button>
 		</div>
 	</div>
+
+	<script>
+		function setDate(){
+			var today = new Date();
+		    var dd = today.getDate();
+		    var mm = today.getMonth()+1; //January is 0!
+
+		    var yyyy = today.getFullYear();
+		    if(dd<10){
+		        dd='0'+dd
+		    } 
+		    if(mm<10){
+		        mm='0'+mm
+		    } 
+		    var today = dd+'/'+mm+'/'+yyyy;
+		    document.getElementById("dateCreate").innerHTML = today;
+		}
+		setDate();
+	</script>
 </body>
 </html>

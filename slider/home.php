@@ -50,7 +50,7 @@
         }
         .bricon
         {
-            background: url(../img/browser-icons.png);
+            background: url(ibrowser-icons.png);
         }
     </style>
     <script>
@@ -273,7 +273,7 @@
         else{
 
     		FB.init({
-                        appId      : '388013708073548',
+                        appId      : '681402881971355',
                         status     : true, // check login status
                         cookie     : true, // enable cookies to allow the server to access the session
                         xfbml      : true  // parse XFBML
@@ -433,7 +433,7 @@
 
                 background-color: #000; top: 0px; left: 0px;width: 100%; height:100%;"> 
             </div> 
-            <div style="position: absolute; display: block; background: url(../img/loading.gif) no-repeat center center;
+            <div style="position: absolute; display: block; background: url(img/loading.gif) no-repeat center center;
 
                 top: 0px; left: 0px;width: 100%;height:100%;">
             </div> 
@@ -443,7 +443,7 @@
         <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 980px; height: 380px;
             overflow: hidden;">
             <div>
-                <img u="image" src="../img/home/01.jpg" />
+                <img u="image" src="img/home/01.jpg" />
                 <div u=caption t="CLIP|LR" du="1500" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:500px; height:30px;"> 
                 CHÀO MỪNG CÁC BẠN
                 </div>
@@ -467,7 +467,7 @@
                 <a class="captionOrange" u="caption" t="CLIP|L" d=-300 href="http://www.jssor.com/development/tool-caption-transition-viewer.html" style="position:absolute;left:720px;top:280px;width:220px;height:40px;font-size:36px;color:#fff;line-height:40px;">TRANSITIONS</a>
             </div>
             <div> 
-                <img u="image" src="../img/home/02.jpg" />
+                <img u="image" src="img/home/02.jpg" />
                 <a class="captionOrange" href="http://www.jssor.com/development/tool-slideshow-transition-viewer.html" style="position: absolute; top: 300px; left: 630px; width: 380px; height: 30px;">360+ SLIDESHOW TRANSITIONS</a>
                 <div u=caption t="CLIP|LR" t2="B" du="2000" class="captionOrange"  style="position:absolute; left:20px; top: 300px; width:500px; height:30px;"> 
                 GIÚP CÁC BẠN TẠO NÊN CÁC SLIDESHOW
@@ -487,7 +487,7 @@
                 <div u="caption" t="MCLIP|R" d=-300 style="position:absolute;left:325px;top:190px;width:350px;height:30px;font-size:18px;color:#fff;line-height:30px;">Slider&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;17KB&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ~1%</div>
             </div>
             <div> 
-                <img u="image" src="../img/home/03.jpg" />
+                <img u="image" src="img/home/03.jpg" />
                 <a class="captionOrange" href="http://www.jssor.com/demos/index.html" style="position: absolute; top: 50px; right: 30px; width: 200px;">HƠN 30 MẪU SLIDESHOW</a>
                 <div u=caption t="T" t2=NO style="position: absolute; left: 20px; top:30px; width:600px; height:90px; color: #fff; line-height: 30px; text-align: center;"> 
                     Các bạn có thể tạo ra các slideshow tuyệt đẹp từ hình ảnh từ Facebook và Flick<br />
@@ -523,7 +523,7 @@
                 <div u="caption" t="R|IB" t2=R d=-900 style="position:absolute;left:860px;top:250px;width:60px;height:30px;font-size:28px;color:#fff;line-height:30px;">và người thân</div>
             </div>
             <div>
-                <img u="image" src="../img/home/04.jpg" />
+                <img u="image" src="img/home/04.jpg" />
                 <div u=caption t="RTTS|T" d=-300 t2="B" class=captionOrange style="position:absolute; left:20px; top: 330px; width:300px; height:30px;"> 
                 Phù hợp trên
                 </div>
@@ -555,8 +555,8 @@
                 <div u="caption" t="T|IB" d=-900 style="position:absolute;left:525px;top:90px;width:220px;height:30px;font-size:28px;color:#fff;line-height:30px;">Windows Phone</div>
                 <div u="caption" t="T|IB" t2="ZMF|10" d=-900 style="position:absolute;left:560px;top:160px;width:120px;height:30px;font-size:28px;color:#fff;line-height:30px;">Android</div>
                 <div u="caption" t="T|IB" t2=R d=-900 style="position:absolute;left:760px;top:140px;width:60px;height:30px;font-size:28px;color:#fff;line-height:30px;">iOS</div>
-                <img u="caption" t="T|IB" t2=B d=-900 src="../img/home/moc-iphone.png" style="position:absolute;left:600px;top:230px;width:120px;height:80px;" />
-                <img u="caption" t="RTTL|BR" d=-450 src="../img/home/moc-ipad.png" style="position:absolute;left:750px;top:220px;width:77px;height:100px;" />
+                <img u="caption" t="T|IB" t2=B d=-900 src="img/home/moc-iphone.png" style="position:absolute;left:600px;top:230px;width:120px;height:80px;" />
+                <img u="caption" t="RTTL|BR" d=-450 src="img/home/moc-ipad.png" style="position:absolute;left:750px;top:220px;width:77px;height:100px;" />
             </div>
 
             <!-- Example to add fixed static share buttons in slider BEGIN -->
@@ -571,7 +571,7 @@
                     height: 32px;
                     cursor: pointer;
                     vertical-align: middle;
-                    background-image: url(../img/share/share-icons.png);
+                    background-image: url(img/share/share-icons.png);
                 }
 
                 .share-facebook {
@@ -640,7 +640,7 @@
                 <a class="share-icon share-googleplus" target="_blank" href="https://plus.google.com/share?url=http://jssor.com" title="Share on Google Plus"></a>
                 <a class="share-icon share-linkedin" target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=http://jssor.com" title="Share on LinkedIn"></a>
                 <a class="share-icon share-stumbleupon" target="_blank" href="http://www.stumbleupon.com/submit?url=http://jssor.com&title=JavaScript%20jQuery%20Image%20Slider/Slideshow/Carousel/Gallery/Banner%20html%20TOUCH%20SWIPE%20Responsive" title="Share on StumbleUpon"></a>
-                <a class="share-icon share-pinterest" target="_blank" href="http://pinterest.com/pin/create/button/?url=http://jssor.com&media=http://jssor.com/img/site/jssor.slider.jpg&description=JavaScript%20jQuery%20Image%20Slider/Slideshow/Carousel/Gallery/Banner%20html%20TOUCH%20SWIPE%20Responsive" title="Share on Pinterst"></a>
+                <a class="share-icon share-pinterest" target="_blank" href="http://pinterest.com/pin/create/button/?url=http://jssor.com&media=http://jssor.cimg/site/jssor.slider.jpg&description=JavaScript%20jQuery%20Image%20Slider/Slideshow/Carousel/Gallery/Banner%20html%20TOUCH%20SWIPE%20Responsive" title="Share on Pinterst"></a>
                 <a class="share-icon share-email" target="_blank" href="mailto:?Subject=Jssor%20Slider&Body=Highly%20recommended%20JavaScript%20jQuery%20Image%20Slider/Slideshow/Carousel/Gallery/Banner%20html%20TOUCH%20SWIPE%20Responsive%20http://jssor.com" title="Share by Email"></a>
             </div>
             <!-- Example to add fixed static share buttons in slider END -->
@@ -655,7 +655,7 @@
                     }
                 }
             </style>
-            <img u="any" class="qr_code" src="../img/qr/jssor.com.png" style="position: absolute; width: 80px; height: 80px; bottom: 20px; right: 20px; opacity: .5; filter: alpha(opacity=50);" />
+            <img u="any" class="qr_code" src="img/qr/jssor.com.png" style="position: absolute; width: 80px; height: 80px; bottom: 20px; right: 20px; opacity: .5; filter: alpha(opacity=50);" />
             <!-- Example to add fixed static QR code in slider END -->
         </div> 
  
@@ -682,7 +682,7 @@
                 line-height: 21px;
                 color: white;
                 font-size: 12px;
-                background: url(../img/b03.png) no-repeat;
+                background: url(img/b03.png) no-repeat;
                 overflow: hidden;
                 cursor: pointer;
             }
@@ -717,7 +717,7 @@
                 width: 55px;
                 height: 55px;
                 cursor: pointer;
-                background: url(../img/a20.png) no-repeat;
+                background: url(img/a20.png) no-repeat;
                 overflow: hidden;
             }
             .jssora20l { background-position: -3px -33px; }

@@ -42,7 +42,7 @@
 	  		console.log("Enter facebook command...");
 
 	  		FB.init({
-			       	appId      : '388013708073548',
+			       	appId      : '681402881971355',
 			       	status     : true, // check login status
 			       	cookie     : true, // enable cookies to allow the server to access the session
 			       	xfbml      : true  // parse XFBML
@@ -236,7 +236,8 @@
 						        "photoId" 		: selected[i].id.substring(0, selected[i].id.length - 2),
 						        "thumbLink"  	: selected[i].src,
 						        "photoLink"		: selected[i].alt,
-						        "SlideShowTransition": SlideShowTransition[randomIndex]
+						        "SlideShowTransition": SlideShowTransition[randomIndex],
+						        "Caption"		: ""
 					});
 			  		//console.log(selected[i]);
 			  		toggleSelectImage(selected[i].id.substring(0, selected[i].id.length - 2), 1);
